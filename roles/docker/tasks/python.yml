@@ -1,0 +1,15 @@
+---
+- name: install pip
+  apt:
+    name: '{{ item }}'
+  items:
+    - python-pip
+    - python3-pip
+
+- name: install docker library
+  pip:
+    name: docker
+    executable: '{{ item }}'
+  items:
+    - pip
+    - pip3

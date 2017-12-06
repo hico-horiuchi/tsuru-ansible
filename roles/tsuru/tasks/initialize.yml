@@ -1,0 +1,66 @@
+---
+- name: get target list
+  shell: 'tsuru target-list'
+  register: get_target_list
+
+- name: add default target
+  shell: 'tsuru target-add default http://127.0.0.1:{{ tsuru.port }} -s'
+  when: not '* default (http://127.0.0.1:{{ tsuru.port }})' in get_target_list.stdout
+
+- name: create root user
+  shell: 'docker exec api sh -c "yes {{ tsuru.root.password }} | tsurud root-user-create {{ tsuru.root.email }}"'
+  ignore_errors: yes
+
+- name: login to default target
+  shell: 'yes {{ tsuru.root.password }} | tsuru login {{ tsuru.root.email }}'
+
+- name: get team list
+  shell: 'tsuru team-list'
+  register: get_team_list
+
+- name: create admin team
+  shell: 'tsuru team-create admin'
+  when: not 'admin' in get_team_list.stdout
+
+- name: get role list
+  shell: 'tsuru role-list'
+  register: get_role_list
+
+- name: create role
+  shell: 'tsuru role-add {{ item.name }} {{ item.context }}'
+  when: not item.name in get_role_list.stdout
+  with_items: '{{ tsuru.roles }}'
+
+- name: add permissions to role
+  shell: 'tsuru role-permission-add {{ item.name }} {{ item.permissions }}'
+  with_items: '{{ tsuru.roles }}'
+
+- name: set role as default
+  shell: 'tsuru role-default-add --{{ item.default }} {{ item.name }}'
+  when: item.default
+  with_items: '{{ tsuru.roles }}'
+
+- name: get pool list
+  shell: 'tsuru pool-list'
+  register: get_pool_list
+
+- name: add default pool
+  shell: 'tsuru pool-add default -d -p'
+  when: not 'default' in get_pool_list.stdout
+
+- name: get node list
+  shell: 'tsuru node-list'
+  register: get_node_list
+
+- name: add node to default pool
+  shell: 'tsuru node-add address=http://127.0.0.1:{{ docker.port }} pool=default --register'
+  when: not 'http://127.0.0.1:{{ docker.port }}' in get_node_list.stdout
+
+- name: get platform list
+  shell: 'tsuru platform-list'
+  register: get_platform_list
+
+- name: add platform
+  shell: 'tsuru platform-add {{ item }}'
+  when: not item in get_platform_list.stdout
+  with_items: '{{ tsuru.platforms }}'

@@ -1,0 +1,11 @@
+---
+- name: get tsurud token
+  shell: 'tsurud token'
+  register: get_tsurud_token
+
+- name: create .bash_profile
+  template:
+    src: bash_profile.j2
+    dest: /home/git/.bash_profile
+    owner: git
+    group: git

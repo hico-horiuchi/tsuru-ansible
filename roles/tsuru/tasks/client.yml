@@ -1,0 +1,6 @@
+---
+- name: download tsuru-client
+  unarchive:
+    src: 'https://github.com/tsuru/tsuru-client/releases/download/{{ tsuru.version | regex_replace("^v") }}/tsuru_{{ tsuru.version | regex_replace("^v") }}_linux_amd64.tar.gz'
+    dest: /usr/local/bin
+    remote_src: yes

@@ -1,0 +1,22 @@
+---
+- name: create hooks directory
+  file:
+    path: /home/git/bare-template/hooks
+    state: directory
+    recurse: yes
+    owner: git
+    group: git
+
+- name: copy pre-receive script
+  copy:
+    src: pre-receive
+    dest: /home/git/bare-template/hooks/pre-receive
+    owner: git
+    group: git
+    mode: 0755
+
+- name: copy gandalf.conf
+  template:
+    src: gandalf.conf.j2
+    dest: /etc/gandalf.conf
+  notify: restart gandalf-server

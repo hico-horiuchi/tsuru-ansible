@@ -1,0 +1,10 @@
+---
+- name: install gandalf-server
+  apt:
+    name: gandalf-server
+
+- name: start and enable gandalf-server
+  service:
+    name: gandalf-server
+    state: started
+    enabled: yes

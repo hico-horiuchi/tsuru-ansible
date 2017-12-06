@@ -1,0 +1,23 @@
+---
+- name: restart host
+  shell: sleep 2 && shutdown -r now
+  async: 1
+  poll: 0
+  ignore_errors: yes
+  become: yes
+
+- name: wait for host to come back
+  local_action:
+    module: wait_for
+    host: '{{ inventory_hostname }}'
+    port: '{{ hostvars[inventory_hostname].get("ansible_ssh_port", 22) }}'
+    state: started
+    delay: 10
+    timeout: 60
+  become: no
+
+- name: restart docker
+  service:
+    name: docker
+    state: restarted
+  become: yes

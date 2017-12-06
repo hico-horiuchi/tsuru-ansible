@@ -1,0 +1,10 @@
+---
+- name: recreate planb container
+  docker_container:
+    name: planb
+    image: 'tsuru/planb:{{ planb.version }}'
+    state: started
+    restart_policy: always
+    recreate: yes
+    network_mode: host
+    command: '-l :{{ planb.port }} --read-redis-host {{ redis.host }} --read-redis-port {{ redis.port }} --write-redis-host {{ redis.host }} --write-redis-port {{ redis.port }}'

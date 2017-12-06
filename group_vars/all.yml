@@ -1,0 +1,16 @@
+---
+docker:
+  host: 127.0.0.1
+  port: 2375
+docker_registry:
+  host: 127.0.0.1
+  port: 5000
+redis:
+  host: 127.0.0.1
+  port: 6379
+mongo:
+  host: 127.0.0.1
+  port: 27017
+gandalf:
+  host: 127.0.0.1
+  port: 8000

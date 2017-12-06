@@ -1,0 +1,11 @@
+---
+- name: copy docker.service
+  template:
+    src: docker.service.j2
+    dest: /lib/systemd/system/docker.service
+  register: create_docker_service
+
+- name: reload systemd manager configuration
+  shell: systemctl daemon-reload
+  when: create_docker_service|changed
+  notify: restart docker

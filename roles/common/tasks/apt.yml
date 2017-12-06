@@ -1,0 +1,16 @@
+---
+- name: copy source.list
+  template:
+    src: source.list.j2
+    dest: /etc/apt/sources.list
+
+- name: update all packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+    autoremove: yes
+  register: update_all_packages
+
+- name: cleanup package caches
+  shell: apt-get clean
+  when: update_all_packages|changed

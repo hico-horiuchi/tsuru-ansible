@@ -1,0 +1,12 @@
+---
+timezone: Etc/UTC
+apt:
+  ubuntu:
+    uri: 'http://ftp.jaist.ac.jp/pub/Linux/ubuntu/'
+    components:
+      - main
+      - restricted
+      - universe
+      - multiverse
+ssh:
+  disable_password_auth: yes

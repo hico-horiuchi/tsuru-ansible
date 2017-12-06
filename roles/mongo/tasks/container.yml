@@ -1,0 +1,12 @@
+---
+- name: recreate mongo container
+  docker_container:
+    name: mongo
+    image: mongo
+    state: started
+    restart_policy: always
+    recreate: yes
+    ports:
+      - '{{ mongo.host }}:{{ mongo.port }}:27017'
+    volumes:
+      - '/var/lib/mongo:/data/db'

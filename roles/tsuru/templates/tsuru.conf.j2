@@ -1,0 +1,44 @@
+listen: "{{ tsuru.host }}:{{ tsuru.port }}"
+debug: true
+host: http://{{ ansible_nodename }}:{{ tsuru.port }}
+auth:
+  user-registration: true
+  scheme: native
+database:
+  url: {{ mongo.host }}:{{ mongo.port }}
+  name: tsurudb
+queue:
+  mongo-url: {{ mongo.host }}:{{ mongo.port }}
+  mongo-database: queuedb
+git:
+  api-server: http://{{ gandalf.host }}:{{ gandalf.port }}
+provisioner: docker
+docker:
+  router: hipache
+  collection: docker_containers
+  repository-namespace: tsuru
+  deploy-cmd: /var/lib/tsuru/deploy
+  registry: {{ docker_registry.host }}:{{ docker_registry.port }}
+  cluster:
+    storage: mongodb
+    mongo-url: {{ mongo.host }}:{{ mongo.port }}
+    mongo-database: cluster
+  run-cmd:
+    bin: /var/lib/tsuru/start
+    port: "8888"
+  bs:
+    image: tsuru/bs:v1
+    socket: /var/run/docker.sock
+routers:
+  hipache:
+    type: hipache
+    redis-server: {{ redis.host }}:{{ redis.port }}
+    domain: {{ ansible_nodename }}
+pubsub:
+  redis-host: {{ redis.host }}
+  redis-port: {{ redis.port }}
+quota:
+  units-per-app: {{ tsuru.quota.units }}
+  apps-per-user: {{ tsuru.quota.apps }}
+log:
+  disable-syslog: true

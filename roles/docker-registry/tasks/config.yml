@@ -1,0 +1,5 @@
+---
+- name: create registry directory
+  file:
+    path: /var/lib/registry
+    state: directory

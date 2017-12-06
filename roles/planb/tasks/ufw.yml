@@ -1,0 +1,6 @@
+---
+- name: allow planb port
+  ufw:
+    rule: allow
+    port: '{{ planb.port }}'
+    proto: tcp

@@ -1,0 +1,10 @@
+---
+- name: create tsuru directory
+  file:
+    path: /etc/tsuru
+    state: directory
+
+- name: copy tsuru.conf
+  template:
+    src: tsuru.conf.j2
+    dest: /etc/tsuru/tsuru.conf

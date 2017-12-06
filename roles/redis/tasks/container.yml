@@ -1,0 +1,12 @@
+---
+- name: recreate redis container
+  docker_container:
+    name: redis
+    image: redis
+    state: started
+    restart_policy: always
+    recreate: yes
+    ports:
+      - '{{ redis.host }}:{{ redis.port }}:6379'
+    volumes:
+      - '/var/lib/redis:/data'

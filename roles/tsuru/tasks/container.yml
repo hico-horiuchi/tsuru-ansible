@@ -1,0 +1,11 @@
+---
+- name: recreate api container
+  docker_container:
+    name: api
+    image: 'tsuru/api:{{ tsuru.version }}'
+    state: started
+    restart_policy: always
+    recreate: yes
+    network_mode: host
+    volumes:
+      - '/etc/tsuru/tsuru.conf:/etc/tsuru/tsuru.conf:ro'

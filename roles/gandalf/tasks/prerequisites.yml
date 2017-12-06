@@ -1,0 +1,16 @@
+---
+- name: add new gpg key
+  apt_key:
+    keyserver: https://packagecloud.io/tsuru/stable/gpgkey
+    id: FC52AA01537091BA8BE4557F715CC19B7E65CF04
+
+- name: copy tsuru.list
+  template:
+    src: tsuru.list.j2
+    dest: /etc/apt/sources.list.d/tsuru.list
+  register: create_tsuru_list
+
+- name: update apt package index
+  apt:
+    update_cache: yes
+  when: create_tsuru_list|changed

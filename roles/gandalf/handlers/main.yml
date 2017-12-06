@@ -1,0 +1,6 @@
+---
+- name: restart gandalf-server
+  service:
+    name: gandalf-server
+    state: restarted
+  become: yes

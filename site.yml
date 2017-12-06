@@ -1,0 +1,65 @@
+---
+- name: common
+  hosts:
+    - tsuru-hosts
+  roles:
+    - common
+  tags:
+    - common
+
+- name: docker
+  hosts:
+    - tsuru-hosts
+  roles:
+    - docker
+  tags:
+    - docker
+
+- name: docker-registry
+  hosts:
+    - tsuru-hosts
+  roles:
+    - docker-registry
+  tags:
+    - docker_registry
+
+- name: redis
+  hosts:
+    - tsuru-hosts
+  roles:
+    - redis
+  tags:
+    - redis
+
+- name: mongo
+  hosts:
+    - tsuru-hosts
+  roles:
+    - mongo
+  tags:
+    - mongo
+
+- name: planb
+  hosts:
+    - tsuru-hosts
+  roles:
+    - planb
+  tags:
+    - planb
+
+- name: gandalf
+  hosts:
+    - tsuru-hosts
+  roles:
+    - gandalf
+  tags:
+    - gandalf
+
+- name: tsuru
+  hosts:
+    - tsuru-hosts
+  roles:
+    - tsuru
+  tags:
+    - tsuru
+

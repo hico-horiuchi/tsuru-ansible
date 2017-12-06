@@ -1,0 +1,6 @@
+---
+- name: allow tsuru port
+  ufw:
+    rule: allow
+    port: '{{ tsuru.port }}'
+    proto: tcp

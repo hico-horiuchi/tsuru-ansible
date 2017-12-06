@@ -1,0 +1,13 @@
+---
+- name: install docker-engine
+  apt:
+    name: docker-engine
+  notify:
+    - restart host
+    - wait for host to come back
+
+- name: start and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes

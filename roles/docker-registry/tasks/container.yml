@@ -1,0 +1,14 @@
+---
+- name: recreate registry container
+  docker_container:
+    name: registry
+    image: 'registry:2'
+    state: started
+    restart_policy: always
+    recreate: yes
+    ports:
+      - '{{ docker_registry.host }}:{{ docker_registry.port }}:5000'
+    volumes:
+      - '/var/lib/registry:/var/lib/registry'
+    env:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry

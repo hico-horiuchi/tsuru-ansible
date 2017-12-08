@@ -5,7 +5,7 @@ tsuru:
   version: v1.4.0
   quota:
     units: 1
-    apps: 1
+    apps: 3
   root:
     email: admin@example.com
     password: admin123

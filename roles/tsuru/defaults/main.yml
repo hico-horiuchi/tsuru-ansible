@@ -18,6 +18,10 @@ tsuru:
       context: team
       default: team-create
       permissions: app service-instance team
+    - name: hackathon-tutor
+      context: global
+      default: no
+      permissions: app.read app.run platform.create platform.read platform.update 
   platforms:
     - buildpack
     - go
@@ -26,3 +30,4 @@ tsuru:
     - php
     - python
     - ruby
+    - static

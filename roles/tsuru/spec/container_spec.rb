@@ -7,7 +7,7 @@ describe docker_container('api') do
   its(['Config.Image']) { should eq "tsuru/api:#{property['tsuru']['version']}" }
   it { should exist }
   it { should be_running }
-  it { should have_volume('/etc/tsuru/tsuru.conf', '/etc/tsuru/tsuru.conf') }
+  it { should have_volume('/etc/tsuru', '/etc/tsuru/tsuru') }
 end
 
 describe port(property['tsuru']['port']) do

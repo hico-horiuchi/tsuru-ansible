@@ -1,0 +1,14 @@
+---
+- name: create letsencrypt certification
+  docker_container:
+    name: letsencrypt
+    image: quay.io/letsencrypt/letsencrypt
+    state: started
+    cleanup: yes
+    detach: no
+    command: 'certonly -d {{ ansible_nodename }} --standalone -n --agree-tos -m {{ letsencrypt.email }}'
+    ports:
+      - '{{ letsencrypt.port }}:{{ letsencrypt.port }}'
+    volumes:
+      - '/etc/letsencrypt:/etc/letsencrypt'
+      - '/var/lib/letsencrypt:/var/lib/letsencrypt'

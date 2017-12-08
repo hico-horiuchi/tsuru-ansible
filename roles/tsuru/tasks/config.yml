@@ -8,3 +8,12 @@
   template:
     src: tsuru.conf.j2
     dest: /etc/tsuru/tsuru.conf
+
+- name: copy tls files
+  copy:
+    src: '/etc/letsencrypt/live/{{ ansible_nodename }}/{{ item }}'
+    dest: '/etc/tsuru/{{ item }}'
+    remote_src: yes
+  with_items:
+    - fullchain.pem
+    - privkey.pem

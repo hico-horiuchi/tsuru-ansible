@@ -4,8 +4,8 @@
   register: get_target_list
 
 - name: add default target
-  shell: 'tsuru target-add default http://127.0.0.1:{{ tsuru.port }} -s'
-  when: not '* default (http://127.0.0.1:{{ tsuru.port }})' in get_target_list.stdout
+  shell: 'tsuru target-add default https://{{ ansible_nodename }}:{{ tsuru.port }} -s'
+  when: not '* default (https://{{ ansible_nodename }}:{{ tsuru.port }})' in get_target_list.stdout
 
 - name: create root user
   shell: 'docker exec api sh -c "yes {{ tsuru.root.password }} | tsurud root-user-create {{ tsuru.root.email }}"'

@@ -23,6 +23,14 @@
   tags:
     - docker_registry
 
+- name: letsencrypt
+  hosts:
+    - tsuru-hosts
+  roles:
+    - letsencrypt
+  tags:
+    - letsencrypt
+
 - name: redis
   hosts:
     - tsuru-hosts

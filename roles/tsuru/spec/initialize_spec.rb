@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe command("tsuru target-list | grep default") do
-  its(:stdout) { should match /^\* default \(http:\/\/127\.0\.0\.1:#{property['tsuru']['port']}\)$/ }
+  its(:stdout) { should match /^\* default \(https:\/\/#{ENV['TARGET_HSOT']}:#{property['tsuru']['port']}\)$/ }
   its(:exit_status) { should eq 0 }
 end
 

@@ -1,0 +1,6 @@
+---
+- name: add cronjob for letsencrypt certification renewal
+  cron:
+    name: letsencrypt certification renewal
+    special_time: weekly
+    job: 'docker run --name letsencrypt -p {{ letsencrypt.port }}:{{ letsencrypt.port }} --rm -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt quay.io/letsencrypt/letsencrypt renew'

@@ -1,2 +1,2 @@
 export TSURU_TOKEN={{ get_tsurud_token.stdout }}
-export TSURU_HOST=127.0.0.1:{{ tsuru.port }}
+export TSURU_HOST=https://{{ ansible_nodename }}:{{ tsuru.port }}

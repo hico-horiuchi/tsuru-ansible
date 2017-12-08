@@ -1,6 +1,10 @@
 listen: "{{ tsuru.host }}:{{ tsuru.port }}"
 debug: true
-host: http://{{ ansible_nodename }}:{{ tsuru.port }}
+host: https://{{ ansible_nodename }}:{{ tsuru.port }}
+use-tls: true
+tls:
+  cert-file: /etc/tsuru/fullchain.pem
+  key-file: /etc/tsuru/privkey.pem
 auth:
   user-registration: true
   scheme: native

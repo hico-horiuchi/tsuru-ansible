@@ -1,0 +1,6 @@
+---
+- name: allow letsencrypt port
+  ufw:
+    rule: allow
+    port: '{{ letsencrypt.port }}'
+    proto: tcp

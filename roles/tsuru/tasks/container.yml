@@ -8,4 +8,4 @@
     recreate: yes
     network_mode: host
     volumes:
-      - '/etc/tsuru/tsuru.conf:/etc/tsuru/tsuru.conf:ro'
+      - '/etc/tsuru:/etc/tsuru:ro'

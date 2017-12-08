@@ -1,0 +1,8 @@
+---
+- name: create letsencrypt directory
+  file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /etc/letsencrypt
+    - /var/lib/letsencrypt

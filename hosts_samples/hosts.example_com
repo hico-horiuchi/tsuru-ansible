@@ -1,5 +1,5 @@
 [tsuru-hosts]
 example.com
 
-[cloudn:children]
+[conoha:children]
 tsuru-hosts

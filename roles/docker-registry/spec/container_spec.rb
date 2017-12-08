@@ -1,4 +1,7 @@
+require 'spec_helper'
+
 describe docker_container('registry') do
+  its(['HostConfig.LogConfig.Type']) { should eq 'journald' }
   its(['HostConfig.PortBindings.5000/tcp']) { should eq [{ 'HostIp' => property['docker_registry']['host'], 'HostPort' => property['docker_registry']['port'].to_s }] }
   its(['HostConfig.RestartPolicy.Name']) { should eq 'always' }
   its(['HostConfig.RestartPolicy.MaximumRetryCount']) { should eq 0 }

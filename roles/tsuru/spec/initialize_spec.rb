@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe command("tsuru target-list | grep default") do
-  its(:stdout) { should match /^\* default \(https:\/\/#{ENV['TARGET_HSOT']}:#{property['tsuru']['port']}\)$/ }
+  its(:stdout) { should match /^\* default \(https:\/\/#{ENV['TARGET_HOST']}:#{property['tsuru']['port']}\)$/ }
   its(:exit_status) { should eq 0 }
 end
 
-describe command('tsuru user-info') do
-  its(:stdout) { should match /^Email: #{property['tsuru']['root']['email']}$/ }
-  its(:exit_status) { should eq 0 }
-end
+# describe command('tsuru user-info') do
+#   its(:stdout) { should match /^Email: #{property['tsuru']['root']['email']}$/ }
+#   its(:exit_status) { should eq 0 }
+# end
 
 describe command('tsuru team-list | grep admin') do
   its(:exit_status) { should eq 0 }

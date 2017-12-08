@@ -3,6 +3,7 @@
   docker_container:
     name: planb
     image: 'tsuru/planb:{{ planb.version }}'
+    log_driver: journald
     state: started
     restart_policy: always
     recreate: yes

@@ -1,4 +1,7 @@
+require 'spec_helper'
+
 describe docker_container('mongo') do
+  its(['HostConfig.LogConfig.Type']) { should eq 'journald' }
   its(['HostConfig.PortBindings.27017/tcp']) { should eq [{ 'HostIp' => property['mongo']['host'], 'HostPort' => property['mongo']['port'].to_s }] }
   its(['HostConfig.RestartPolicy.Name']) { should eq 'always' }
   its(['HostConfig.RestartPolicy.MaximumRetryCount']) { should eq 0 }

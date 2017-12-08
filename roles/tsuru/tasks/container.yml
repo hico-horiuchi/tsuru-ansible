@@ -3,6 +3,7 @@
   docker_container:
     name: api
     image: 'tsuru/api:{{ tsuru.version }}'
+    log_driver: journald
     state: started
     restart_policy: always
     recreate: yes

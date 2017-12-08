@@ -3,6 +3,7 @@
   docker_container:
     name: redis
     image: redis
+    log_driver: journald
     state: started
     restart_policy: always
     recreate: yes

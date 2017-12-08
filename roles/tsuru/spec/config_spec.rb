@@ -9,7 +9,7 @@ end
 describe file('/etc/tsuru/tsuru.conf') do
   it { should be_file }
   it { should contain "listen: \"#{property['tsuru']['host']}:#{property['tsuru']['port']}\"" }
-  it { should contain "host: http://#{ENV['TARGET_HOST']}:#{property['tsuru']['port']}" }
+  it { should contain "host: https://#{ENV['TARGET_HOST']}:#{property['tsuru']['port']}" }
   it { should contain "units-per-app: #{property['tsuru']['quota']['units']}" }
   it { should contain "apps-per-user: #{property['tsuru']['quota']['apps']}" }
   it { should be_mode 644 }

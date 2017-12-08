@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe docker_container('redis') do
+  its(['HostConfig.LogConfig.Type']) { should eq 'journald' }
   its(['HostConfig.PortBindings.6379/tcp']) { should eq [{ 'HostIp' => property['redis']['host'], 'HostPort' => property['redis']['port'].to_s }] }
   its(['HostConfig.RestartPolicy.Name']) { should eq 'always' }
   its(['HostConfig.RestartPolicy.MaximumRetryCount']) { should eq 0 }

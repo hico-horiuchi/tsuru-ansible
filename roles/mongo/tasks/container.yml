@@ -3,6 +3,7 @@
   docker_container:
     name: mongo
     image: mongo
+    log_driver: journald
     state: started
     restart_policy: always
     recreate: yes

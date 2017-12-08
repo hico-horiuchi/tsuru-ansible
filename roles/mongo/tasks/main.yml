@@ -1,8 +1,8 @@
 ---
 - include: config.yml
   become: yes
-  tags: mongodb_config
+  tags: mongo_config
 
 - include: container.yml
   become: yes
-  tags: mongodb_container
+  tags: mongo_container

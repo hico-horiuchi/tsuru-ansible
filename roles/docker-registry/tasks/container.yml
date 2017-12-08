@@ -3,6 +3,7 @@
   docker_container:
     name: registry
     image: 'registry:2'
+    log_driver: journald
     state: started
     restart_policy: always
     recreate: yes

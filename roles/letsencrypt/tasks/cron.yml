@@ -3,4 +3,4 @@
   cron:
     name: letsencrypt certification renewal
     special_time: weekly
-    job: 'docker run --name letsencrypt -p {{ letsencrypt.port }}:{{ letsencrypt.port }} --rm -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt quay.io/letsencrypt/letsencrypt renew'
+    job: 'docker run --log-driver journald --name letsencrypt -p {{ letsencrypt.port }}:{{ letsencrypt.port }} --rm -v /etc/letsencrypt:/etc/letsencrypt -v /var/lib/letsencrypt:/var/lib/letsencrypt quay.io/letsencrypt/letsencrypt renew'

@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+describe package('gnupg-curl') do
+  it { should be_installed }
+end
+
 describe command('apt-key list | grep tsuru') do
   its(:stdout) { should contain 'https://packagecloud.io/tsuru/stable' }
   its(:exit_status) { should eq 0 }

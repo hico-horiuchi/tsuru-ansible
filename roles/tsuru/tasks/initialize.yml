@@ -56,6 +56,11 @@
   shell: 'tsuru node-add address=http://127.0.0.1:{{ docker.port }} pool=default --register'
   when: not 'http://127.0.0.1:{{ docker.port }}' in get_node_list.stdout
 
+- name: wait until node is ready
+  shell: 'tsuru node-list | grep http://127.0.0.1:{{ docker.port }} | grep ready'
+  retries: 3
+  delay: 10
+
 - name: get platform list
   shell: 'tsuru platform-list'
   register: get_platform_list

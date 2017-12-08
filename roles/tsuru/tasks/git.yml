@@ -1,6 +1,6 @@
 ---
 - name: get tsurud token
-  shell: 'tsurud token'
+  shell: 'docker exec api tsurud token'
   register: get_tsurud_token
 
 - name: create .bash_profile

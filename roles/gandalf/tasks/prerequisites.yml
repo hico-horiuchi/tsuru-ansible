@@ -1,4 +1,8 @@
 ---
+- name: install gnupg-curl
+  apt:
+    name: gnupg-curl
+
 - name: add new gpg key
   apt_key:
     keyserver: https://packagecloud.io/tsuru/stable/gpgkey

@@ -1,28 +1,24 @@
 ---
-- name: get kernel release
-  shell: uname -r
-  register: get_kernel_release
-
-- name: install required packages
+- name: install packages to allow apt to use a repository over https
   apt:
     name: '{{ item }}'
   with_items:
     - apt-transport-https
     - ca-certificates
-    - linux-image-extra-{{ get_kernel_release.stdout }}
+    - curl
+    - software-properties-common
 
-- name: add new gpg key
+- name: add docker's official gpg key
   apt_key:
-    keyserver: hkp://p80.pool.sks-keyservers.net:80
-    id: 58118E89F3A912897C070ADBF76221572C52609D
+    url: https://download.docker.com/linux/ubuntu/gpg
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 
-- name: copy docker.list
-  template:
-    src: docker.list.j2
-    dest: /etc/apt/sources.list.d/docker.list
-  register: create_docker_list
+- name: set up docker stable repository
+  apt_repository:
+    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+  register: set_up_docker_stable_repository
 
 - name: update apt package index
   apt:
     update_cache: yes
-  when: create_docker_list|changed
+  when: set_up_docker_stable_repository|changed

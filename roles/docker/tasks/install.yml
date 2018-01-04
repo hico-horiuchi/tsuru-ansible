@@ -1,7 +1,7 @@
 ---
-- name: install docker-engine
+- name: install the latest version of docker ce
   apt:
-    name: docker-engine
+    name: docker-ce
   notify:
     - restart host
     - wait for host to come back

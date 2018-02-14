@@ -58,9 +58,10 @@
 
 - name: wait until node is ready
   shell: 'tsuru node-list | grep http://127.0.0.1:{{ docker.port }} | grep ready'
+  register: wait_until_node_is_ready
+  until: wait_until_node_is_ready|succeeded
   retries: 3
   delay: 10
-  ignore_errors: yes
 
 - name: get platform list
   shell: 'tsuru platform-list'

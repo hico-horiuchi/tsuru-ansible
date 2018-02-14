@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe file('/var/lib/registry') do
+describe file('/mnt/data/registry') do
   it { should be_directory }
   it { should be_mode 755 }
   it { should be_owned_by 'root' }

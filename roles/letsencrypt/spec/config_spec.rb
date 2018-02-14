@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-%w(/etc/letsencrypt /var/lib/letsencrypt).each do |item| 
+%w(/etc/letsencrypt /var/lib/letsencrypt /var/log/letsencrypt).each do |item|
   describe file(item) do
     it { should be_directory }
     it { should be_mode 755 }

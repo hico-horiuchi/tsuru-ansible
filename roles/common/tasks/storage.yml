@@ -1,0 +1,14 @@
+---
+- name: create ext4 filesystem on /dev/vdb
+  filesystem:
+    fstype: ext4
+    dev: /dev/vdb
+
+- name: mount /dev/vdb as /mnt/data
+  mount:
+     path: /mnt/data
+     src: /dev/vdb
+     fstype: ext4
+     opts: errors=remount-ro
+     passno: 2
+     state: mounted

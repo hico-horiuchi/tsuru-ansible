@@ -1,8 +1,8 @@
 ---
-- include: config.yml
+- import_tasks: config.yml
   become: yes
   tags: redis_config
 
-- include: container.yml
+- import_tasks: container.yml
   become: yes
   tags: redis_container

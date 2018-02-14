@@ -1,4 +1,10 @@
 ---
+- name: create docker directory
+  file:
+    path: /mnt/data/docker
+    state: directory
+    mode: 0711
+
 - name: copy docker.service
   template:
     src: docker.service.j2

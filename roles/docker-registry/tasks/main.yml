@@ -1,8 +1,8 @@
 ---
-- include: config.yml
+- import_tasks: config.yml
   become: yes
   tags: docker_registry_config
 
-- include: container.yml
+- import_tasks: container.yml
   become: yes
   tags: docker_registry_container

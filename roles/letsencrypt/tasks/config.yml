@@ -6,3 +6,4 @@
   with_items:
     - /etc/letsencrypt
     - /var/lib/letsencrypt
+    - /var/log/letsencrypt

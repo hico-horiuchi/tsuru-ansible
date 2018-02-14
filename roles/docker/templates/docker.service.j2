@@ -7,7 +7,7 @@ Requires=docker.socket
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ docker.host }}:{{ docker.port }} --insecure-registry {{ docker_registry.host }}:{{ docker_registry.port }}
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://{{ docker.host }}:{{ docker.port }} --data-root /mnt/data/docker --insecure-registry {{ docker_registry.host }}:{{ docker_registry.port }}
 ExecReload=/bin/kill -s HUP $MAINPID
 LimitNOFILE=1048576
 LimitNPROC=infinity

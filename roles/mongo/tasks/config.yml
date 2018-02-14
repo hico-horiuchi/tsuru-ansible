@@ -1,5 +1,5 @@
 ---
 - name: create mongo directory
   file:
-    path: /var/lib/mongo
+    path: /mnt/data/mongo
     state: directory

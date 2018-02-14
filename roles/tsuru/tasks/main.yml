@@ -1,24 +1,24 @@
 ---
-- include: config.yml
+- import_tasks: config.yml
   become: yes
   tags: tsuru_config
 
-- include: container.yml
+- import_tasks: container.yml
   become: yes
   tags: tsuru_container
 
-- include: ufw.yml
+- import_tasks: ufw.yml
   become: yes
   tags: tsuru_ufw
 
-- include: git.yml
+- import_tasks: git.yml
   become: yes
   tags: tsuru_git
 
-- include: client.yml
+- import_tasks: client.yml
   become: yes
   tags: tsuru_client
 
-- include: initialize.yml
+- import_tasks: initialize.yml
   become: yes
   tags: tsuru_initialize

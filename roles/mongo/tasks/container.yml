@@ -10,4 +10,4 @@
     ports:
       - '{{ mongo.host }}:{{ mongo.port }}:27017'
     volumes:
-      - '/var/lib/mongo:/data/db'
+      - '/mnt/data/mongo:/data/db'

@@ -7,7 +7,7 @@ describe docker_container('mongo') do
   its(['HostConfig.RestartPolicy.MaximumRetryCount']) { should eq 0 }
   it { should exist }
   it { should be_running }
-  it { should have_volume('/data/db', '/var/lib/mongo') }
+  it { should have_volume('/data/db', '/mnt/data/mongo') }
 end
 
 describe port(property['mongo']['port']) do

@@ -2,7 +2,7 @@
 - name: create letsencrypt certification
   docker_container:
     name: letsencrypt
-    image: quay.io/letsencrypt/letsencrypt
+    image: certbot/certbot
     log_driver: journald
     state: started
     cleanup: yes
@@ -13,3 +13,5 @@
     volumes:
       - '/etc/letsencrypt:/etc/letsencrypt'
       - '/var/lib/letsencrypt:/var/lib/letsencrypt'
+      - '/var/log/letsencrypt:/var/log/letsencrypt'
+  ignore_errors: yes

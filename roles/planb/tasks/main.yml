@@ -1,8 +1,8 @@
 ---
-- include: container.yml
+- import_tasks: container.yml
   become: yes
   tags: planb_container
 
-- include: ufw.yml
+- import_tasks: ufw.yml
   become: yes
   tags: planb_ufw

@@ -8,7 +8,7 @@ describe docker_container('registry') do
   its(['Config.Env']) { should include 'REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/var/lib/registry' }
   it { should exist }
   it { should be_running }
-  it { should have_volume('/var/lib/registry', '/var/lib/registry') }
+  it { should have_volume('/var/lib/registry', '/mnt/data/registry') }
 end
 
 describe port(property['docker_registry']['port']) do

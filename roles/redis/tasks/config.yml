@@ -1,5 +1,5 @@
 ---
 - name: create redis directory
   file:
-    path: /var/lib/redis
+    path: /mnt/data/redis
     state: directory

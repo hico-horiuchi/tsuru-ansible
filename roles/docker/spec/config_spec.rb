@@ -1,8 +1,16 @@
 require 'spec_helper'
 
+describe file('/mnt/data/docker') do
+  it { should be_directory }
+  it { should be_mode 711 }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+end
+
 describe file('/lib/systemd/system/docker.service') do
   it { should be_file }
   it { should contain "-H tcp://#{property['docker']['host']}:#{property['docker']['port']}" }
+  it { should contain '--data-root /mnt/data/docker' }
   it { should contain "--insecure-registry #{property['docker_registry']['host']}:#{property['docker_registry']['port']}" }
   it { should be_mode 644 }
   it { should be_owned_by 'root' }

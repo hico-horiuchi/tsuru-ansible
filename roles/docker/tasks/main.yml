@@ -1,20 +1,20 @@
 ---
-- include: prerequisites.yml
+- import_tasks: prerequisites.yml
   become: yes
   tags: docker_prerequisites
 
-- include: install.yml
+- import_tasks: install.yml
   become: yes
   tags: docker_install
 
-- include: config.yml
+- import_tasks: config.yml
   become: yes
   tags: docker_config
 
-- include: python.yml
+- import_tasks: python.yml
   become: yes
   tags: docker_python
 
-- include: group.yml
+- import_tasks: group.yml
   become: yes
   tags: docker_group

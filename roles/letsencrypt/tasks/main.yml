@@ -1,16 +1,16 @@
 ---
-- include: config.yml
+- import_tasks: config.yml
   become: yes
   tags: letsencrypt_config
 
-- include: ufw.yml
+- import_tasks: ufw.yml
   become: yes
   tags: letsencrypt_ufw
 
-- include: container.yml
+- import_tasks: container.yml
   become: yes
   tags: letsencrypt_container
 
-- include: cron.yml
+- import_tasks: cron.yml
   become: yes
   tags: letsencrypt_cron

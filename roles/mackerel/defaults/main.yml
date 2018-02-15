@@ -1,0 +1,8 @@
+---
+mackerel:
+  roles:
+    - 'Tsuru:app'
+  plugins:
+    - docker
+    - redis
+    - mongodb

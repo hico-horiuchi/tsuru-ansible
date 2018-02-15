@@ -1,0 +1,18 @@
+---
+- name: create configuration directory
+  file:
+    path: /etc/mackerel-agent/conf.d
+    state: directory
+
+- name: copy mackerel-agent.conf
+  template:
+    src: mackerel-agent.conf.j2
+    dest: /etc/mackerel-agent/mackerel-agent.conf
+  notify: restart mackerel-agent
+
+- name: copy plugin configuration files
+  template:
+    src: '{{ item }}.conf.j2'
+    dest: '/etc/mackerel-agent/conf.d/{{ item }}.conf'
+  with_items: '{{ mackerel.plugins }}'
+  notify: restart mackerel-agent

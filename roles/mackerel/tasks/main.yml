@@ -1,0 +1,12 @@
+---
+- import_tasks: prerequisites.yml
+  become: yes
+  tags: mackerel_prerequisites
+
+- import_tasks: install.yml
+  become: yes
+  tags: mackerel_install
+
+- import_tasks: config.yml
+  become: yes
+  tags: mackerel_config

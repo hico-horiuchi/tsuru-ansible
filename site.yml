@@ -47,6 +47,14 @@
   tags:
     - mongo
 
+- name: mackerel
+  hosts:
+    - tsuru-hosts
+  roles:
+    - mackerel
+  tags:
+    - mackerel
+
 - name: planb
   hosts:
     - tsuru-hosts
@@ -70,4 +78,3 @@
     - tsuru
   tags:
     - tsuru
-

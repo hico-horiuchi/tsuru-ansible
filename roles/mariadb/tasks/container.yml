@@ -1,0 +1,15 @@
+---
+- name: recreate mariadb container
+  docker_container:
+    name: mariadb
+    image: mariadb
+    log_driver: journald
+    state: started
+    restart_policy: always
+    recreate: yes
+    env:
+      MYSQL_ROOT_PASSWORD: '{{ mariadb.root.password }}'
+    ports:
+      - '{{ mariadb.host }}:{{ mariadb.port }}:3306'
+    volumes:
+      - '/mnt/data/mariadb:/var/lib/mysql'

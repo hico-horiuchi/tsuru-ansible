@@ -1,0 +1,8 @@
+---
+- import_tasks: config.yml
+  become: yes
+  tags: mariadb_config
+
+- import_tasks: container.yml
+  become: yes
+  tags: mariadb_container

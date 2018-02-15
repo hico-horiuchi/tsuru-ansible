@@ -1,0 +1,5 @@
+---
+- name: create mariadb directory
+  file:
+    path: /mnt/data/mariadb
+    state: directory

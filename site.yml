@@ -47,6 +47,14 @@
   tags:
     - mongo
 
+- name: mariadb
+  hosts:
+    - tsuru-hosts
+  roles:
+    - mariadb
+  tags:
+    - mariadb
+
 - name: mackerel
   hosts:
     - tsuru-hosts

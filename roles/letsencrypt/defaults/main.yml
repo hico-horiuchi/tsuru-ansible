@@ -1,4 +1,4 @@
 ---
 letsencrypt:
-  port: 443
+  port: 80
   email: admin@example.com

@@ -10,7 +10,3 @@
 - import_tasks: container.yml
   become: yes
   tags: letsencrypt_container
-
-- import_tasks: cron.yml
-  become: yes
-  tags: letsencrypt_cron

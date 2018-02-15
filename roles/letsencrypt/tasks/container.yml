@@ -1,17 +1,18 @@
 ---
+- name: check letsencrypt directory
+  stat:
+    path: '/etc/letsencrypt/live/{{ ansible_nodename }}'
+  register: check_letsencrypt_directory
+
 - name: create letsencrypt certification
-  docker_container:
-    name: letsencrypt
-    image: certbot/certbot
-    log_driver: journald
-    state: started
-    cleanup: yes
-    detach: no
-    command: 'certonly -d {{ ansible_nodename }} --standalone -n --agree-tos -m {{ letsencrypt.email }}'
-    ports:
-      - '{{ letsencrypt.port }}:{{ letsencrypt.port }}'
-    volumes:
-      - '/etc/letsencrypt:/etc/letsencrypt'
-      - '/var/lib/letsencrypt:/var/lib/letsencrypt'
-      - '/var/log/letsencrypt:/var/log/letsencrypt'
-  ignore_errors: yes
+  shell: >
+    docker run --log-driver journald \
+               --name letsencrypt_certonly \
+               -p {{ letsencrypt.port }}:{{ letsencrypt.port }} \
+               --rm \
+               -v /etc/letsencrypt:/etc/letsencrypt \
+               -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+               -v /var/log/letsencrypt:/var/log/letsencrypt \
+               certbot/certbot \
+               certonly -d {{ ansible_nodename }} --standalone -n --agree-tos -m {{ letsencrypt.email }}
+  when: not check_letsencrypt_directory.stat.exists
